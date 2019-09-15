@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: http-service
+spec:
+  type: NodePort
+  selector:
+    app: httpd
+  ports:
+    - protocol: TCP
+      port: 7777
+      targetPort: 80
+      nodePort: 32333
+

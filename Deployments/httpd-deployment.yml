@@ -1,0 +1,18 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: http-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: httpd
+    spec:
+      containers:
+      - image: httpd:latest
+        name: http
+        ports:
+        - containerPort: 80
+          protocol: TCP
+
