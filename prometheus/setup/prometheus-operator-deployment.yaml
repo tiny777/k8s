@@ -26,6 +26,7 @@ spec:
         - --logtostderr=true
         - --config-reloader-image=jimmidyson/configmap-reload:v0.3.0
         - --prometheus-config-reloader=quay.io/coreos/prometheus-config-reloader:v0.38.0
+        - storage.tsdb.retention.time=30d
         image: quay.io/coreos/prometheus-operator:v0.38.0
         name: prometheus-operator
         ports:
