@@ -1,0 +1,117 @@
+expose:
+  type: nodePort
+  tls:
+    enabled: true
+    secretName: ""
+    notarySecretName: ""
+    commonName: "tinyHarbor"                 
+  nodePort:                          
+    ports:
+      http:
+        port: 80
+        nodePort: 30002
+      https:
+        port: 443
+        nodePort: 30003
+      notary:
+        port: 4443
+        nodePort: 30004
+### Harbor 各个组件的持久化配置，并设置各个组件 existingClaim 参数为上面创建的对应 PVC 名称
+persistence:
+  enabled: true
+  ### 存储保留策略，当PVC、PV删除后，是否保留存储数据
+  resourcePolicy: "keep"    
+  persistentVolumeClaim:
+    registry:
+      existingClaim: "harbor-registry"
+      size: 100Gi
+    chartmuseum:
+      existingClaim: "harbor-chartmuseum"
+      size: 10Gi
+    jobservice:
+      existingClaim: "harbor-jobservice"
+      size: 10Gi
+    database:
+      existingClaim: "harbor-database"
+      size: 10Gi
+    redis:
+      existingClaim: "harbor-redis"
+      size: 10Gi
+ 
+### 默认用户名 admin 的密码配置，注意：密码中一定要包含大小写字母与数字
+harborAdminPassword: "Harbor777"
+
+#各个组件 CPU & Memory 资源相关配置
+nginx:
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 500m
+portal:
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 500m  
+core:
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 1000m
+jobservice:
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 500m
+registry:
+  registry:
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 500m
+  controller:
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 500m
+clair:
+  clair:
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 500m
+  adapter:
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 500m
+notary:
+  server:
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 500m
+  signer:
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 500m
+database:
+  internal:
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 500m
+redis:
+  internal:
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 500m
+   
+#开启 chartmuseum，使 Harbor 能够存储 Helm 的 chart
+chartmuseum:
+  enabled: true
+  resources:
+    requests:
+     memory: 256Mi
+     cpu: 500m 

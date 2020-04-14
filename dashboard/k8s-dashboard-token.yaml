@@ -6,11 +6,11 @@ metadata:
     rbac.authorization.kubernetes.io/autoupdate: "true"
 roleRef:
   kind: ClusterRole
-  name: admin
+  name: cluster-admin
   apiGroup: rbac.authorization.k8s.io
 subjects:
 - kind: ServiceAccount
-  name: kubernetes-admin
+  name: admin
   namespace: kube-system
 ---
 apiVersion: v1
