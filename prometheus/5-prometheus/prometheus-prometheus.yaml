@@ -11,14 +11,6 @@ spec:
     - name: alertmanager-main
       namespace: monitoring
       port: web
-  storage: 
-    volumeClaimTemplate:
-      spec:
-        storageClassName: rook-ceph-block
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 100Gi  
   image: quay.io/prometheus/prometheus:v2.15.2
   nodeSelector:
     kubernetes.io/os: linux

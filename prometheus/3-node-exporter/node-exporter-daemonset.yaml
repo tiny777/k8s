@@ -79,9 +79,7 @@ spec:
         runAsUser: 65534
       serviceAccountName: node-exporter
       tolerations:
-      - key: node-role.kubernetes.io/master
-        operator: Exists
-        effect: NoSchedule
+      - operator: Exists
       volumes:
       - hostPath:
           path: /proc

@@ -47,6 +47,8 @@ spec:
             - containerPort: 8443
               protocol: TCP
           args:
+            - --tls-cert-file=/k8s_dashboard.crt
+            - --tls-key-file=/k8s_dashboard.key
             - --auto-generate-certificates
             - --namespace=kube-system          #设置为当前部署的Namespace
           resources:

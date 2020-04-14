@@ -10,6 +10,8 @@ spec:
   - name: web
     port: 9093
     targetPort: web
+    nodePort: 30888
+  type: NodePort
   selector:
     alertmanager: main
     app: alertmanager

@@ -27,8 +27,6 @@ metadata:
 subsets:
 - addresses:
   - ip: 192.168.122.61
-  - ip: 192.168.122.62
-  - ip: 192.168.122.63
   ports:
   - name: http-metrics
     port: 10252
